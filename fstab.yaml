@@ -1,3 +1,3 @@
 mountpoints:
   /:
-    https://drive.google.com/drive/folders/1VhfAK_9CmbSsSGSICPneI6VXzI-RbCUT
+    https://localhost:8443/bin/franklin.delivery/idealakeinformationtech/indusind-website-eds/main
