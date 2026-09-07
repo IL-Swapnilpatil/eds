@@ -1,9 +1,23 @@
-<meta
-  http-equiv="Content-Security-Policy"
-  content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
-  move-to-http-header="true"
->
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Apache Solr configuration -->
+<script nonce="aem">
+  (function () {
+    var h = window.location.hostname;
+    // Use local proxy for: localhost, AEM Author (Universal Editor), and .aem.page (preview)
+    // Use direct Solr for: .aem.live (production)
+    var useProxy = h === 'localhost'
+      || h === '127.0.0.1'
+      || h.indexOf('adobeaemcloud.com') !== -1
+      || h.indexOf('.aem.page') !== -1;
+    window.solrConfig = {
+      endpoint: useProxy
+        ? 'http://localhost:3001'
+        : 'http://localhost:8983/solr',
+      core: 'eds-pages'
+    };
+  })();
+</script>
 <script nonce="aem" src="/scripts/aem.js" type="module"></script>
 <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
-<link rel="stylesheet" href="/styles/styles.css"/>
+<script src="https://universal-editor-service.adobe.io/cors.js" async></script>
+<link rel="stylesheet" href="/styles/styles.css" />
